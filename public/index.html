@@ -9,7 +9,7 @@
 
 <body>
 
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
 				<app></app>
@@ -18,11 +18,9 @@
 	</div>
 
 	<script src="./tags/app.tag" type="riot/tag"></script>
-	<script src="./tags/about.tag" type="riot/tag"></script>
-	<script src="./tags/menu.tag" type="riot/tag"></script>
-	<script src="./tags/admin.tag" type="riot/tag"></script>
-	<script src="./tags/admin_entry.tag" type="riot/tag"></script>
-	<script src="./tags/memes.tag" type="riot/tag"></script>
+	<script src="./tags/private.tag" type="riot/tag"></script>
+	<script src="./tags/home.tag" type="riot/tag"></script>
+	<script src="./tags/public.tag" type="riot/tag"></script>
 	<script src="./tags/meme.tag" type="riot/tag"></script>
 
 	<script src="https://cdn.jsdelivr.net/riot/3.0/riot+compiler.min.js"></script>
@@ -52,6 +50,13 @@
 		var observable = riot.observable();
 		riot.mount('*');
 	</script>
+
+	<style>
+		body {
+			padding: 2em;
+			background-color: aliceblue;
+		}
+	</style>
 
 </body>
 

@@ -1,37 +1,60 @@
 <app>
+	<div class="row">
+		<h4>Have you heard of the eggboy meme?</h4>
+		<div class="col-md-4">
 
-	<!-- menu bar -->
-	<menu></menu>
+			<!-- 16:9 aspect ratio -->
+			<div class="embed-responsive embed-responsive-16by9">
+				<iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/AUMXEI6-YXU?rel=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+			</div>
+		</div>
+	</div>
 
-	<!-- Content Components -->
-	<!-- The riot show conditional will show an HTML element if the condition specified is true.
-	Otherwise the HTML element will be hidden.
-	If hidden, the HTML element will still be part of the HTML / DOM. -->
-	<memes show={ page === "memes" }></memes>
-	<admin show={ page === "admin" }></admin>
-	<about show={ page === "about" }></about>
+	<div class="row">
+		<h4>What people have been saying:</h4>
+		<public if={ !user }></public>
+	</div>
+
+	<div class="row">
+		<h4>Login to say something</h4>
+		<button if={ !user } class="btn btn-success" onclick={ logIn }>LOGIN</button>
+		<button if={ user } class="btn btn-danger" onclick={ logOut }>LOGOUT</button>
+		<private if={ user }></private>
+	</div>
+
 
 	<script>
 		var that = this;
 
-		// default page when the website first loads
-		// show about page upon first loading the site
-		this.page = "about";
+		// firebase.auth().currentUser will always reflect the current authenticated user state. Gives a user object if logged in. Gives null if logged out.
+		this.user = firebase.auth().currentUser;
 
-		// Routing Function
-		// When user clicks a menu bar item, url changes
-		//route function below gets triggered
-		//page variable updates
-		route(function(urlFragment) {
-			// console.log(urlFragment);
-			that.page = urlFragment;
+		// AUTHENTICATION LISTENER Once we code this, we have a "live" listener that is constantly listening for whether the user is logged in or not. It will fire the callback if it "hears" a login, or logout.
+		firebase.auth().onAuthStateChanged(function (userObj) {
+			that.user = firebase.auth().currentUser;
 			that.update();
 		});
 
-		// Start the router and execute it [true]
-		route.start(true);
+		logIn(event) {
+			// Specify that you want to sign up with Google authentication
+			var provider = new firebase.auth.GoogleAuthProvider();
+
+			// Popover signup is probably the most simple and trusted.
+			firebase.auth().signInWithPopup(provider);
+		}
+
+		logOut(event) {
+			firebase.auth().signOut();
+		}
 	</script>
 
+	<style>
+		:scope {
+			display: block;
+		}
 
-
+		.row {
+			margin-top: 2em;
+		}
+	</style>
 </app>
