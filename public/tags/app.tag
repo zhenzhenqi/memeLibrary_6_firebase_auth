@@ -19,6 +19,7 @@
 		<h4>Login to say something</h4>
 		<button if={ !user } class="btn btn-success" onclick={ logIn }>LOGIN</button>
 		<button if={ user } class="btn btn-danger" onclick={ logOut }>LOGOUT</button>
+		<input if={ user }></input>
 		<private if={ user }></private>
 	</div>
 
