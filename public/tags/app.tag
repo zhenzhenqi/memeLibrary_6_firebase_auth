@@ -53,8 +53,20 @@
 			display: block;
 		}
 
-		.row {
-			margin-top: 2em;
+		.row:nth-child(1){
+			padding: 2em;
+			background-color: red;
 		}
+
+		.row:nth-child(2){
+			padding: 2em;
+			background-color: yellow;
+		}
+
+		.row:nth-child(3){
+			padding: 2em;
+			background-color: powderblue;
+		}
+
 	</style>
 </app>
